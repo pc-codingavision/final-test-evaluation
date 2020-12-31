@@ -1,0 +1,31 @@
+<div class="container" fxLayout="row" fxLayoutGap="20px">
+  <div class="section" fxFlex="50">
+    <div fxLayout="column" fxLayoutGap="20px">
+      <app-joke-container-card
+        cardTitle="Liked Jokes"
+        [containerType]="CardContainerType.LIKED"
+        [jokes$]="likedJokes$"
+        (liked)="onJokeLiked($event)"
+        (disliked)="onJokeDisliked($event)"
+        (archived)="onJokeArchived($event)"
+        (deleted)="onJokeDeleted($event)"></app-joke-container-card>
+      <app-joke-container-card
+        cardTitle="Disliked Jokes"
+        [containerType]="CardContainerType.DISLIKED"
+        [jokes$]="dislikedJokes$"
+        (liked)="onJokeLiked($event)"
+        (disliked)="onJokeDisliked($event)"
+        (archived)="onJokeArchived($event)"
+        (deleted)="onJokeDeleted($event)"></app-joke-container-card>
+    </div>
+  </div>
+  <div class="section" fxFlex="50">
+    <div fxLayout="column" fxLayoutGap="20px">
+      <app-joke-generator></app-joke-generator>
+      <app-joke-container-card
+        cardTitle="Archived Jokes"
+        [containerType]="CardContainerType.ARCHIVED"
+        [jokes$]="archivedJokes$"></app-joke-container-card>
+    </div>
+  </div>
+</div>

@@ -1,27 +1,15 @@
-# FinalEvaluation
+# Coding a Vision - Angular Course 2020
+## Final Evaluation Project
+---
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+### Resources
 
-## Development server
+[The Internet Cuck Norris Database](http://www.icndb.com/api/) - Use the [http://api.icndb.com/jokes/random](Fetching a random joke API).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Mockups
 
-## Code scaffolding
+![](C:\dev\coding-a-vision\final-evaluation\images\general-view.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Requirements
+1. Use the Official Angular Material library
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
