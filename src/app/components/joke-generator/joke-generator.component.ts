@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Joke } from '../../models/model';
-import { CuckNorrisJokeService } from '../../services/cuck-norris-joke.service';
+import { ChuckNorrisJokeService } from '../../services/chuck-norris-joke.service';
 import { interval, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -9,17 +9,18 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './joke-generator.component.html',
   styleUrls: ['./joke-generator.component.css']
 })
-export class JokeGeneratorComponent implements OnInit {
+export class JokeGeneratorComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line:variable-name
-  _fetchTime = 30000;     // 5000ms
+  _fetchTime = 30;     // 30 seconds
   joke: Joke;
   jokeSubscription: Subscription;
 
-  constructor(private jokeService: CuckNorrisJokeService) {
+  constructor(private jokeService: ChuckNorrisJokeService) {
   }
 
   ngOnInit(): void {
-    this.jokeService.getRandomJoke().subscribe(joke => this.joke = joke);
+    this.jokeService.getRandomJoke()
+      .subscribe(joke => this.joke = joke);
     this.jokeSubscription = this.getJokeSubscription(this._fetchTime);
   }
 
@@ -33,12 +34,6 @@ export class JokeGeneratorComponent implements OnInit {
     return this._fetchTime;
   }
 
-  private getJokeSubscription(time: number): Subscription {
-    return interval(time).pipe(
-      switchMap(() => this.jokeService.getRandomJoke())
-    ).subscribe(joke => this.joke = joke);
-  }
-
   vote(type: string, joke: Joke): void {
     switch (type) {
       case 'UP':
@@ -48,5 +43,15 @@ export class JokeGeneratorComponent implements OnInit {
         this.jokeService.dislikeJoke(joke);
         break;
     }
+  }
+
+  private getJokeSubscription(time: number): Subscription {
+    return interval(time * 1000).pipe(
+      switchMap(() => this.jokeService.getRandomJoke())
+    ).subscribe(joke => this.joke = joke);
+  }
+
+  ngOnDestroy(): void {
+    this.jokeSubscription.unsubscribe();
   }
 }

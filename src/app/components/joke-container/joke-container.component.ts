@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CuckNorrisJokeService } from '../../services/cuck-norris-joke.service';
+import { ChuckNorrisJokeService } from '../../services/chuck-norris-joke.service';
 import { Observable } from 'rxjs';
 import { CardContainerType, Joke } from '../../models/model';
 
@@ -16,7 +16,7 @@ export class JokeContainerComponent implements OnInit {
   dislikedJokes$: Observable<Joke[]>;
   archivedJokes$: Observable<Joke[]>;
 
-  constructor(private jokeService: CuckNorrisJokeService) {
+  constructor(private jokeService: ChuckNorrisJokeService) {
   }
 
   ngOnInit(): void {

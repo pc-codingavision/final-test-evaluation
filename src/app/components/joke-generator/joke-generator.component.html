@@ -3,8 +3,8 @@
     <mat-card-title-group>
       <mat-card-title>Chuck Norris Joke</mat-card-title>
       <div id="fetch-time" fxLayout="row" fxLayoutAlign="center center">
-        <label fxFlex="40" for="fetch-time">Fetch Time (ms):</label>
-        <input mat-input fxFlex="25" type="number" name="fetch-time" step="500" [(ngModel)]="fetchTime"/>
+        <label fxFlex="40" for="fetch-time">Fetch Time (seconds):</label>
+        <input mat-input fxFlex="25" type="number" name="fetch-time" step="1" [(ngModel)]="fetchTime"/>
       </div>
     </mat-card-title-group>
     <mat-card-content>

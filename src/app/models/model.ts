@@ -4,33 +4,15 @@ export class Joke {
     private _id: number,
     private _joke: string,
     private _categories: Array<string>,
-    private _isLiked = false,
-    private _isDisliked = false,
-    private _isArchived = false
+    private _status = JokeStatus.UNASSIGNED
   ) {}
 
-  get isLiked(): boolean {
-    return this._isLiked;
+  get status(): JokeStatus {
+    return this._status;
   }
 
-  set isLiked(value: boolean) {
-    this._isLiked = value;
-  }
-
-  get isDisliked(): boolean {
-    return this._isDisliked;
-  }
-
-  set isDisliked(value: boolean) {
-    this._isDisliked = value;
-  }
-
-  get isArchived(): boolean {
-    return this._isArchived;
-  }
-
-  set isArchived(value: boolean) {
-    this._isArchived = value;
+  set status(value: JokeStatus) {
+    this._status = value;
   }
 
   get id(): number {
@@ -50,3 +32,6 @@ export enum CardContainerType {
   LIKED, DISLIKED, ARCHIVED
 }
 
+export enum JokeStatus {
+  UNASSIGNED, LIKED, DISLIKED, ARCHIVED
+}
