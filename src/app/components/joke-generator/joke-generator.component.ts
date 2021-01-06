@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Joke } from '../../models/model';
+import { Joke, VoteType } from '../../models/model';
 import { ChuckNorrisJokeService } from '../../services/chuck-norris-joke.service';
-import { interval, Subscription } from 'rxjs';
+import { interval, Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -13,20 +13,24 @@ export class JokeGeneratorComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line:variable-name
   _fetchTime = 30;     // 30 seconds
   joke: Joke;
+
+  initialSubscription: Subscription;
   jokeSubscription: Subscription;
+
+  VoteType = VoteType;
 
   constructor(private jokeService: ChuckNorrisJokeService) {
   }
 
   ngOnInit(): void {
-    this.jokeService.getRandomJoke()
+    this.initialSubscription = this.jokeService.getRandomJoke()
       .subscribe(joke => this.joke = joke);
     this.jokeSubscription = this.getJokeSubscription(this._fetchTime);
   }
 
   set fetchTime(time: number) {
     this._fetchTime = time;
-    this.jokeSubscription.unsubscribe();
+    this.jokeUnsubscribe();
     this.jokeSubscription = this.getJokeSubscription(time);
   }
 
@@ -34,12 +38,12 @@ export class JokeGeneratorComponent implements OnInit, OnDestroy {
     return this._fetchTime;
   }
 
-  vote(type: string, joke: Joke): void {
+  vote(type: VoteType, joke: Joke): void {
     switch (type) {
-      case 'UP':
+      case VoteType.LIKE:
         this.jokeService.likeJoke(joke);
         break;
-      case 'DOWN':
+      case VoteType.DISLIKE:
         this.jokeService.dislikeJoke(joke);
         break;
     }
@@ -52,6 +56,13 @@ export class JokeGeneratorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.jokeSubscription.unsubscribe();
+    this.initialSubscription.unsubscribe();
+    this.jokeUnsubscribe();
+  }
+
+  private jokeUnsubscribe(): void {
+    if (this.jokeSubscription) {
+      this.jokeSubscription.unsubscribe();
+    }
   }
 }

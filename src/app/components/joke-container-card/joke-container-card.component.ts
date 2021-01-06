@@ -1,11 +1,17 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CardContainerType, Joke } from '../../models/model';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-joke-container-card',
   templateUrl: './joke-container-card.component.html',
-  styleUrls: ['./joke-container-card.component.css']
+  styles: [`
+    :host {
+      height: 400px;
+      overflow-y: scroll;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JokeContainerCardComponent {
 

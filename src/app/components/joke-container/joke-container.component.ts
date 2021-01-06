@@ -6,7 +6,11 @@ import { CardContainerType, Joke } from '../../models/model';
 @Component({
   selector: 'app-joke-container',
   templateUrl: './joke-container.component.html',
-  styleUrls: ['./joke-container.component.css']
+  styles: [`
+    .container {
+      margin: 20px;
+    }
+  `]
 })
 export class JokeContainerComponent implements OnInit {
 

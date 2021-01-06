@@ -32,6 +32,10 @@ export enum CardContainerType {
   LIKED, DISLIKED, ARCHIVED
 }
 
+export enum VoteType {
+  LIKE, DISLIKE
+}
+
 export enum JokeStatus {
   UNASSIGNED, LIKED, DISLIKED, ARCHIVED
 }

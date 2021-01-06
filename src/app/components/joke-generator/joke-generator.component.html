@@ -9,8 +9,9 @@
     </mat-card-title-group>
     <mat-card-content>
       <div class="thumbs" fxLayout="row" fxLayoutGap="20px">
-        <mat-icon id="thumb-up" class="mat-18" color="accent" (click)="vote('UP', joke)">thumb_up</mat-icon>
-        <mat-icon id="thumb-down" class="mat-18" color="warn" (click)="vote('DOWN', joke)">thumb_down</mat-icon>
+        <mat-icon id="thumb-up" class="mat-18" color="accent" (click)="vote(VoteType.LIKE, joke)">thumb_up</mat-icon>
+        <mat-icon id="thumb-down" class="mat-18" color="warn" (click)="vote(VoteType.DISLIKE, joke)">thumb_down
+        </mat-icon>
       </div>
       <div class="content">{{ joke?.joke }}</div>
     </mat-card-content>
