@@ -40,7 +40,6 @@ export class ChuckNorrisJokeService {
         return Object.assign({}, response, {joke: response.joke.replaceAll('&quot;', '"')});
       }),
       map(r => new Joke(r.id, r.joke, r.categories)),
-      // tap(joke => this.jokes.push(joke)),
       catchError(error => {
         console.error(`An error has occurred: `, error);
         throw new Error(error);
